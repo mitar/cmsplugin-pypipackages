@@ -1,0 +1,22 @@
+{% load i18n markup %}
+{% if packages %}
+	<table class="packages">
+		<tr>
+			<th>{% trans "Name" %}</th>
+			<th>{% trans "Summary" %}</th>
+			<th>{% trans "Version" %}</th>
+			<th>{% trans "Links" %}</th>
+		</tr>
+		{% for package in packages %}
+			<tr class="title">
+				<td class="name">{{ package.name }}</td>
+				<td>{{ package.summary }}</td>
+				<td>{{ package.version }}</td>
+				<td><a href="http://pypi.python.org/pypi/{{ package.name }}">PyPi</a> {% if package.home_page %}<a href="{{ package.home_page }}">H</a>{% endif %} {% if package.download_url %}<a href="{{ package.download_url }}">D</a>{% endif %} {% if package.repo_url %}<a href="{{ package.repo_url }}">R</a>{% endif %} {% if package.docs_url %}<a href="{{ package.docs_url }}">Docs</a>{% endif %}</td>
+			</tr>
+			<tr class="description">
+				<td colspan="4">{{ package.description|restructuredtext }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endif %}
