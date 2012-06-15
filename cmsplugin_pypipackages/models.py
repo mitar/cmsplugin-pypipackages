@@ -25,3 +25,4 @@ class PyPiPackage(models.Model):
 
     class Meta:
         unique_together = (('plugin', 'name'),)
+        ordering = ('name',)
